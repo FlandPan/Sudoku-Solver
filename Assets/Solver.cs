@@ -25,6 +25,31 @@ public class Solver : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space)){
             Debug.Log("Done. Solved: " + Solve());
         }
+        if(Input.GetKeyDown(KeyCode.Home)){
+            Reset();
+            Fill();
+        }
+    }
+    
+    private void Reset(){
+        for(int i = 0;i < 9;i ++){
+            for(int j = 0;j < 9;j ++){
+                board[i,j].text = "" + 0;
+            }
+        }
+    }
+    private void Fill(){
+        for(int i = 1;i <= 13;i ++){
+            int row = Random.Range(0,9);
+            int col = Random.Range(0,9);
+            int num = Random.Range(1,10);
+
+            if(Valid(row,col,"" + num)){
+                board[row,col].text = "" + num;
+            }else{
+                i --;
+            }
+        }
     }
     private bool Valid(int row, int col, string num){
         //Check column
